@@ -1,0 +1,22 @@
+{
+  "name": "xbar-eorzea-time-plugin",
+  "description": "A plugin for xbar to show Final Fantasy XIV in game clock (Eorzea Time / ET).",
+  "version": "1.0.0",
+  "main": "dist/eorzea-time.1s.mjs",
+  "license": "MIT",
+  "scripts": {
+    "build": "ncc build src/eorzea-time.1s.mjs -o dist && sed '1r src/metadata.mjs' dist/index.mjs > dist/eorzea-time.1s.mjs",
+    "postbuild": "rm dist/index.mjs && chmod +x dist/eorzea-time.1s.mjs",
+    "predeploy": "sed -i '' '1d' dist/eorzea-time.1s.mjs && gsed -i '1i#!/usr/bin/env '$(which node) dist/eorzea-time.1s.mjs",
+    "deploy": "cp -f dist/eorzea-time.1s.mjs ~/Library/Application\\ Support/xbar/plugins && cp -f dist/eorzea-time.1s.mjs ~/swiftbar-plugins"
+  },
+  "dependencies": {
+    "@sindresorhus/xbar": "^2.1.1",
+    "@vercel/ncc": "^0.38.1",
+    "eorzea-time": "^3.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.3"
+  },
+  "private": true
+}
