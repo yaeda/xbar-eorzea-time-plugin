@@ -236,7 +236,6 @@ const display = () => {
       text: `${
         isDND() ? ICON_BELL_SLASH : ICON_BELL
       } ET ${eorzeaTime.toString()}`,
-      color: "white",
       font: "Monaco",
     },
     separator,
