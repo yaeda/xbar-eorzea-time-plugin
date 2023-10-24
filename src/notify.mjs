@@ -37,7 +37,11 @@ const isBefore = (targetData, eorzeaTime) => {
 };
 
 export const notifyIfNeed = () => {
-  if (process.env.DND === "true") {
+  if (
+    process.env.DND === "true" ||
+    process.env.NOTIFY_TARGET === undefined ||
+    process.env.NOTIFY_TARGET.length < 4
+  ) {
     return;
   }
 
